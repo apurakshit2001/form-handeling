@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data</title>
+<link rel="stylesheet" href="FormData.css">
+</head>
+<body>
+
+    <h2>Submitted Form Data</h2>
+    <div id="formData"></div>
+
+    <script>
+        function displayFormData() {
+            const formData = JSON.parse(localStorage.getItem("formData"));
+            const formDataDom = document.getElementById('formData');
+
+            if (formData) {
+                const output = `
+                    <ul>
+                        <li><strong>First Name:</strong> ${formData.firstName}</li>
+                        <li><strong>Last Name:</strong> ${formData.lastName}</li>
+                        <li><strong>Email:</strong> ${formData.email}</li>
+                        <li><strong>Phone Number:</strong> ${formData.phone}</li>
+                        <li><strong>Gender:</strong> ${formData.gender}</li>
+                        <li><strong>Date of Birth:</strong> ${formData.dob}</li>
+                        <li><strong>Topic:</strong> ${formData.topic}</li>
+                        <li><strong>Message:</strong> ${formData.message}</li>
+                    </ul>
+                `;
+                formDataDom.innerHTML = output;
+            } else {
+                formDataDom.innerHTML = '<p>No form data found.</p>';
+            }
+        }
+
+        window.onload = displayFormData;
+    </script>
+
+</body>
+
+</html>
