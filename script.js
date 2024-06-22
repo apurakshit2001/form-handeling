@@ -1,16 +1,97 @@
+// Global variable declare করলাম। 
+let firstName, lastName, email, phone, gender, dob, topic, message;
+
 function ShowData(event) {
-    event.preventDefault();
-
-    const firstName = document.getElementById("fname").value;
-    const lastName = document.getElementById("lname").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const gender = document.querySelector('input[name="gender"]:checked') ?
+    // সাধারণত, যখন একটি ফর্ম submit করা হয় , Browser , Local server - এ ফর্ম ডেটা পাঠায় এবং page reload করে।
+    event.preventDefault(); // Prevent form from submitting, এই প্রক্রিয়া টি থামানোর জন্য ..
+    
+    // Retrieve form data
+    firstName = document.getElementById("fname").value;
+    lastName = document.getElementById("lname").value;
+    email = document.getElementById("email").value;
+    phone = document.getElementById("phone").value;
+    gender = document.querySelector('input[name="gender"]:checked') ?
         document.querySelector('input[name="gender"]:checked').value : '';
-    const dob = document.getElementById("dob").value;
-    const topic = document.getElementById("topic").value;
-    const message = document.getElementById("message").value;
+    dob = document.getElementById("dob").value;
+    topic = document.getElementById("topic").value;
+    message = document.getElementById("message").value;
 
+    // Validate all fields
+    if (!validateForm()) {
+        return; // Stop if validation fails
+    }
+
+    // Store data and redirect
+    sendFormData();
+    window.location.href = 'form-data.html'; // Redirect to another page
+}
+
+function validateForm() {
+    if (!firstName) {
+        alert("First Name is required");
+        return false;
+    }
+    if (!lastName) {
+        alert("Last Name is required");
+        return false;
+    }
+    if (!validateEmail(email)) {
+        alert("Email is not valid");
+        return false;
+    }
+    if (!validatePhone(phone)) {
+        alert("Phone number is not valid");
+        return false;
+    }
+    if (!gender) {
+        alert("Gender is required");
+        return false;
+    }
+    if (!dob) {
+        alert("Date of Birth is required");
+        return false;
+    }
+    if (!topic) {
+        alert("Topic is required");
+        return false;
+    }
+    if (!message) {
+        alert("Message is required");
+        return false;
+    }
+    return true; // All fields are valid
+}
+
+function validateEmail(email) {
+    let flagAt = false;
+    let atIndex = 0;
+    let flagDot = false;
+    let dotPos = -1;
+
+    for (let i = 0; i < email.length; i++) {
+        if (email[i] === '@') {
+            flagAt = true;
+            atIndex = i;
+        }
+        if (email[i] === '.') {
+            flagDot = true;
+            dotPos = i;
+        }
+    }
+
+    const domainLength = email.length - dotPos;
+    const dotAtDistance = dotPos - atIndex;
+
+    return flagAt && flagDot && domainLength > 2 && dotAtDistance > 4 && atIndex > 3;
+}
+
+function validatePhone(phone) {
+    // Basic phone number validation
+    const phonePattern = /^[0-9]{10}$/;
+    return phonePattern.test(phone);
+}
+
+function sendFormData() {
     const formData = {
         firstName,
         lastName,
@@ -22,6 +103,6 @@ function ShowData(event) {
         message
     };
 
+    // Store data in local storage
     localStorage.setItem("formData", JSON.stringify(formData));
-    window.location.href = 'form-data.html';
 }
