@@ -4,7 +4,7 @@ let firstName, lastName, email, phone, gender, dob, topic, message;
 function ShowData(event) {
     // সাধারণত, যখন একটি ফর্ম submit করা হয় , Browser , Local server - এ ফর্ম ডেটা পাঠায় এবং page reload করে।
     event.preventDefault(); // Prevent form from submitting, এই প্রক্রিয়া টি থামানোর জন্য ..
-    
+
     // Retrieve form data
     firstName = document.getElementById("fname").value;
     lastName = document.getElementById("lname").value;
@@ -87,8 +87,12 @@ function validateEmail(email) {
 
 function validatePhone(phone) {
     // Basic phone number validation
-    const phonePattern = /^[0-9]{10}$/;
-    return phonePattern.test(phone);
+    // const phonePattern = /^[0-9]{10}$/;
+    // return phonePattern.test(phone);
+
+    if(phone.trim.length == 10){
+        return true;
+    }
 }
 
 function sendFormData() {
