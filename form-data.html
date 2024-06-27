@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Data</title>
     <link rel="stylesheet" href="FormData.css">
 </head>
+
 <body>
 
     <h2>Submitted Form Data</h2>
-    <div id="formData"></div>
+    <div id="formData" ></div>
 
     <script>
         function displayFormData() {
@@ -22,7 +24,7 @@
                         <tr><th>Field</th><th>Value</th></tr>
                         <tr><td><strong>First Name:</strong></td><td>${formData.firstName}</td></tr>
                         <tr><td><strong>Last Name:</strong></td><td>${formData.lastName}</td></tr>
-                        <tr><td><strong>Email:</strong></td><td>${formData.email}</td></tr>
+                        <tr><td class="email"><strong>Email:</strong></td><td class="id">${formData.email}</td></tr>
                         <tr><td><strong>Phone Number:</strong></td><td>${formData.phone}</td></tr>
                         <tr><td><strong>Gender:</strong></td><td>${formData.gender}</td></tr>
                         <tr><td><strong>Date of Birth:</strong></td><td>${formData.dob}</td></tr>
@@ -41,4 +43,5 @@
     </script>
 
 </body>
+
 </html>

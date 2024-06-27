@@ -43,6 +43,7 @@ td:last-child {
     width: 50%;
 }
 
+
 #formData {
     max-width: 600px;
     width: 100%;
@@ -72,14 +73,14 @@ td:last-child {
         text-align: center;
         color: #777;
     }
+    td:first-child {
+        width: 10%;
+        white-space: nowrap;
+    }
+    
+    td:last-child {
+        width: 90%;
+    }
+    
 }
 
-@media (max-width: 400px){
- table{
-    padding-right: 5px;
- }
- #formData{
-    width: 100%;
-
- }
-}
