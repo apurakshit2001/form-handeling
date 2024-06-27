@@ -31,11 +31,19 @@ function validateForm() {
     if (!firstName) {
         alert("First Name is required");
         return false;
+    } else if (firstName.length < 2) {
+        alert("First Name must be at least 2 characters long");
+        return false;
     }
+
     if (!lastName) {
         alert("Last Name is required");
         return false;
+    } else if (lastName.length < 2) {
+        alert("Last Name must be at least 2 characters long");
+        return false;
     }
+    
     if (!validateEmail(email)) {
         alert("Email is not valid");
         return false;
@@ -51,7 +59,7 @@ function validateForm() {
     if (!topic) {
         alert("Topic is required");
         return false;
-    } 
+    }
     if (!country) {
         alert("Country is required");
         return false;
