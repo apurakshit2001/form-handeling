@@ -75,4 +75,7 @@ td:last-child {
  table{
     padding-right: 5px;
  }
+ #formData{
+    width: 100%;
+ }
 }
