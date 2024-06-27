@@ -4,7 +4,6 @@
   body {
     background-color: #f2f2f2;
     font-size: 20px;
-
   }
 
   table {
@@ -12,22 +11,26 @@
     background-color: white;
     box-shadow: 0 0 5px rgb(11, 63, 204);
   }
+  
+  .Information {
+    width: 50vw;
+  }
 
-  h2,
-  h3 {
+  h2, h3 {
     text-align: center;
     font-size: 30px;
     border-bottom: 2px solid black;
   }
 
   form input[type=text],
-  form input[type=email], 
-  form input[type=date], 
+  form input[type=email],
+  form input[type=date],
   form select {
     width: 98%;
     padding: 3px;
   }
-  input[type=button]{
+
+  .submit-btn {
     display: block;
     width: 100%;
     padding: 12px;
@@ -39,13 +42,16 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
+
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
 </style>
 
 <body>
-
   <h2>HTML Forms</h2>
 
-  <form action="#">
+  <form id="form" action="#">
     <table border="10">
       <tr>
         <td><label for="fname">First name:</label></td>
@@ -105,13 +111,13 @@
         <td><textarea id="message" name="message" rows="4" cols="50"></textarea></td>
       </tr>
       <tr>
-        <td colspan="2"><input type="button" value="Submit" onclick="showDetails()"></td>
+        <td colspan="2"><input type="submit" class="submit-btn" value="Submit"></td>
       </tr>
     </table>
   </form>
 
   <h3>Entered Information:</h3>
-  <table>
+  <table class="Information">
     <tr>
       <td id="fnametxt"></td>
       <td id="lnametxt"></td>
@@ -132,9 +138,103 @@
     </tr>
   </table>
 
-
   <script>
-    const showDetails = () => {
+    // Global variable declaration
+    let firstName, lastName, email, phone, gender, dob, topic, message;
+
+    function ShowData(event) {
+      // Prevent form from submitting
+      event.preventDefault();
+
+      // Retrieve form data
+      firstName = document.getElementById("fname").value;
+      lastName = document.getElementById("lname").value;
+      email = document.getElementById("email").value;
+      phone = document.getElementById("phone").value;
+      gender = document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value : '';
+      dob = document.getElementById("dob").value;
+      topic = document.getElementById("topic").value;
+      message = document.getElementById("message").value;
+
+      // Validate all fields
+      if (!validateForm()) {
+        return; // Stop if validation fails
+      }
+
+      // Store data and display
+      sendFormData();
+      displayData();
+    }
+
+    function validateForm() {
+      if (!firstName) {
+        alert("First Name is required");
+        return false;
+      }
+      if (!lastName) {
+        alert("Last Name is required");
+        return false;
+      }
+      if (!validateEmail(email)) {
+        alert("Email is not valid");
+        return false;
+      }
+      if (!gender) {
+        alert("Gender is required");
+        return false;
+      }
+      if (!dob) {
+        alert("Date of Birth is required");
+        return false;
+      }
+      if (!topic) {
+        alert("Topic is required");
+        return false;
+      }
+      if (!message) {
+        alert("Message is required");
+        return false;
+      }
+      if (!validatePhone(phone)) {
+        alert("Phone number is not valid");
+        console.log("2");
+        return false;
+      }
+      return true; // All fields are valid
+    }
+
+    function validateEmail(email) {
+      // Simple email validation
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+      return emailPattern.test(email);
+    }
+
+    function validatePhone(phone) {
+      // Basic phone number validation
+      if (phone.trim().length == 10) {
+        console.log("1");
+        return true;
+      }
+      return false;
+    }
+
+    function sendFormData() {
+      const formData = {
+        firstName,
+        lastName,
+        email,
+        phone,
+        gender,
+        dob,
+        topic,
+        message
+      };
+
+      // Store data in local storage
+      localStorage.setItem("formData", JSON.stringify(formData));
+    }
+
+    function displayData() {
       let firstName = document.getElementById("fname").value;
       let lastName = document.getElementById("lname").value;
       let email = document.getElementById("email").value;
@@ -160,6 +260,9 @@
 
       document.getElementById("messagetxt").innerHTML = "<strong>Message: </strong>" + message;
     }
+
+    // Attach event listener to the form
+    document.getElementById("form").addEventListener("submit", ShowData);
   </script>
 </body>
 

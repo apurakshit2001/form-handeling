@@ -14,6 +14,7 @@ function ShowData(event) {
         document.querySelector('input[name="gender"]:checked').value : '';
     dob = document.getElementById("dob").value;
     topic = document.getElementById("topic").value;
+    country = document.getElementById("country").value;
     message = document.getElementById("message").value;
 
     // Validate all fields
@@ -49,6 +50,10 @@ function validateForm() {
     }
     if (!topic) {
         alert("Topic is required");
+        return false;
+    } 
+    if (!country) {
+        alert("Country is required");
         return false;
     }
     if (!message) {
@@ -101,6 +106,7 @@ function sendFormData() {
         phone,
         gender,
         dob,
+        country,
         topic,
         message
     };

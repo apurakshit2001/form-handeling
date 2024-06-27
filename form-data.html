@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Data</title>
-<link rel="stylesheet" href="FormData.css">
+    <link rel="stylesheet" href="FormData.css">
 </head>
 <body>
 
@@ -18,16 +18,18 @@
 
             if (formData) {
                 const output = `
-                    <ul>
-                        <li><strong>First Name:</strong> ${formData.firstName}</li>
-                        <li><strong>Last Name:</strong> ${formData.lastName}</li>
-                        <li><strong>Email:</strong> ${formData.email}</li>
-                        <li><strong>Phone Number:</strong> ${formData.phone}</li>
-                        <li><strong>Gender:</strong> ${formData.gender}</li>
-                        <li><strong>Date of Birth:</strong> ${formData.dob}</li>
-                        <li><strong>Topic:</strong> ${formData.topic}</li>
-                        <li><strong>Message:</strong> ${formData.message}</li>
-                    </ul>
+                    <table>
+                        <tr><th>Field</th><th>Value</th></tr>
+                        <tr><td><strong>First Name:</strong></td><td>${formData.firstName}</td></tr>
+                        <tr><td><strong>Last Name:</strong></td><td>${formData.lastName}</td></tr>
+                        <tr><td><strong>Email:</strong></td><td>${formData.email}</td></tr>
+                        <tr><td><strong>Phone Number:</strong></td><td>${formData.phone}</td></tr>
+                        <tr><td><strong>Gender:</strong></td><td>${formData.gender}</td></tr>
+                        <tr><td><strong>Date of Birth:</strong></td><td>${formData.dob}</td></tr>
+                        <tr><td><strong>Topic:</strong></td><td>${formData.topic}</td></tr>
+                        <tr><td><strong>Country:</strong></td><td>${formData.country}</td></tr>
+                        <tr><td><strong>Message:</strong></td><td>${formData.message}</td></tr>
+                    </table>
                 `;
                 formDataDom.innerHTML = output;
             } else {
@@ -39,5 +41,4 @@
     </script>
 
 </body>
-
 </html>
