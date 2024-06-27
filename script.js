@@ -39,10 +39,6 @@ function validateForm() {
         alert("Email is not valid");
         return false;
     }
-    if (!validatePhone(phone)) {
-        alert("Phone number is not valid");
-        return false;
-    }
     if (!gender) {
         alert("Gender is required");
         return false;
@@ -57,6 +53,11 @@ function validateForm() {
     }
     if (!message) {
         alert("Message is required");
+        return false;
+    }
+    if (!validatePhone(phone)) {
+        alert("Phone number is not valid");
+        console.log("2");
         return false;
     }
     return true; // All fields are valid
@@ -86,11 +87,8 @@ function validateEmail(email) {
 }
 
 function validatePhone(phone) {
-    // Basic phone number validation
-    // const phonePattern = /^[0-9]{10}$/;
-    // return phonePattern.test(phone);
-
-    if(phone.trim.length == 10){
+    if (phone.trim().length == 10) {
+        console.log("1");
         return true;
     }
 }
